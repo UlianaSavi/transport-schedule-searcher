@@ -5,6 +5,7 @@
   --opacity-grey: #8080803b;
   --grey: #e9ecef;
   --grey-dark: #333;
+  --grey-lite: #3333331e;
 }
 
 *,
@@ -41,6 +42,14 @@ body {
   border-radius: 24px;
   cursor: pointer;
   transition: all .2s;
+}
+
+.btn:disabled {
+  cursor: auto;
+}
+
+.btn.avtive { /*  TODO: не работает */
+  background: var(--grey-dark);
 }
 
 .btn-yellow {

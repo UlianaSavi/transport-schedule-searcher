@@ -11,7 +11,8 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   public search(params: string): Observable<ISearchResponse> {
-    return this.http.get<ISearchResponse>(`${API_SEARCH_URL}?${params}`);
+    // https://t.rasp.yandex.ru/search/train/
+    return this.http.get<ISearchResponse>(`${API_SEARCH_URL}/${params}`);
   }
 
   public getCities(matchStr?: string) {

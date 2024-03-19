@@ -20,7 +20,8 @@ export class MainPageComponent {
     });
   }
 
-  public search() {
+  public search(props: unknown) {
+    console.log(props);
     // this.apiService.search().subscribe((data) => {
     //   console.log(data);
     //   this.searchRes = data;

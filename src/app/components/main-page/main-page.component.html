@@ -1,5 +1,5 @@
 <div class="container">
   <h1 class="header">Расписание пригородного и междугородного транспорта</h1>
-  <app-search-form [cities]="cities"></app-search-form>
+  <app-search-form [cities]="cities" (searchEvent)="search($event);"></app-search-form>
   <app-list *ngIf="searchRes"></app-list>
 </div>

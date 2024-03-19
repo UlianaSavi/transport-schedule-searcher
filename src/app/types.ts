@@ -202,13 +202,22 @@ export interface ISearchRequest {
   transfers?: boolean,
 }
 
+export type SearchFormProps = {
+  from: string,
+  to: string,
+  date: string,
+  transportType: TransportType,
+}
+
+
 export enum TransportType {
-  "plane",
-  "train",
-  "suburban",
-  "bus",
-  "water",
-  "helicopter",
+  none = "Любой",
+  plane = "plane",
+  train = "train",
+  suburban = "suburban",
+  bus = "bus",
+  water = "water",
+  helicopter = "helicopter",
 }
 
 export type CitiesResponse = [
