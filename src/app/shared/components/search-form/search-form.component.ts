@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CitiesResponse, Direction, SearchFormProps, TransportType } from 'src/app/types';
 import { getTomorrow } from 'src/app/utils';
@@ -8,7 +8,7 @@ import { getTomorrow } from 'src/app/utils';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.css']
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   @Input() cities: CitiesResponse | null = null;
   @Output() getCitiesEvent = new EventEmitter<{direction: Direction, matchStr: string}>();
   @Output() searchEvent = new EventEmitter<SearchFormProps>();
@@ -22,9 +22,15 @@ export class SearchFormComponent {
   public searchForm = new FormGroup({
     from: new FormControl('', Validators.required),
     to: new FormControl('', Validators.required),
-    transportType: new FormControl(TransportType.bus, Validators.required),
+    transportType: new FormControl(TransportType.none, Validators.required),
     date: new FormControl(String(this.today), Validators.required),
   });
+
+  ngOnInit() {
+    // this.searchForm.controls.date.valueChanges.subscribe((item) =>{
+    //   console.log(item);
+    // })
+  }
 
   public getCities() {
     if (this.searchForm.value.from) {
@@ -55,19 +61,19 @@ export class SearchFormComponent {
 
   public selectDate(e: Event) {
     const target = (e.target as HTMLInputElement);
-    this.renderer.removeClass(target, 'active'); // TODO: не работает
 
-    if (target.className === 'label'
-    || target.className === 'date date-input'
-    || target.className === 'btn searchForm__date__btn') {
-      if (target.value) {
-        this.searchForm.controls.date.setValue(target.value);
-        this.renderer.addClass(target.parentNode, 'active');
-      }
-      return;
+    if (target.className === 'date date-input') {
+      target.parentElement?.parentElement?.childNodes?.forEach((item) => {
+        this.renderer.removeClass(item, 'active');
+      });
+      this.renderer.addClass(target.parentElement, 'active')
+    } else {
+      target.parentElement?.childNodes?.forEach((item) => {
+        this.renderer.removeClass(item, 'active');
+      });
+      this.renderer.addClass(target, 'active')
     }
 
-    this.renderer.addClass(target, 'active')
 
     switch (target.value) {
       case 'Сегодня':
@@ -76,17 +82,23 @@ export class SearchFormComponent {
       case 'Завтра':
         this.searchForm.controls.date.setValue(this.tomorrow);
         break;
+      default:
+      this.searchForm.controls.date.setValue(target.value);
     }
+    console.log(this.searchForm.controls.date.value);
   }
 
   public selectTransportType(e: Event) {
     const target = (e.target as HTMLButtonElement).className === 'img'
       ? (e.target as HTMLButtonElement).parentElement as HTMLButtonElement
       : (e.target as HTMLButtonElement);
+    target.parentElement?.childNodes?.forEach((item) => {
+      this.renderer.removeClass(item, 'active');
+    });
+    this.renderer.addClass(target, 'active');
     if (target?.value === TransportType.none) {
       return;
     }
     this.searchForm.controls.transportType.setValue(target?.value as TransportType);
-    console.log(this.searchForm.value);
   }
 }

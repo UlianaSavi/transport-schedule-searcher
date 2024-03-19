@@ -48,8 +48,12 @@ body {
   cursor: auto;
 }
 
-.btn.avtive { /*  TODO: не работает */
-  background: var(--grey-dark);
+.btn.active {
+  color: var(--white) !important;
+  background-color: var(--grey-dark) !important;
+}
+.btn.active .img {
+  filter: brightness(7.5);
 }
 
 .btn-yellow {

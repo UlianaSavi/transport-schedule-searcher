@@ -8,17 +8,17 @@
       <img class="img" src="/assets/icon-switch.png" alt="Switch">
     </div>
   </div>
-  <div class="searchForm__date" (click)="selectDate($event)">
-    <input class="btn" type="button" value="Сегодня">
-    <input class="btn" type="button" value="Завтра">
+  <div class="searchForm__date">
+    <input class="btn active" type="button" value="Сегодня" (click)="selectDate($event)">
+    <input class="btn" type="button" value="Завтра" (click)="selectDate($event)">
     <button class="btn searchForm__date__btn" type="button" (click)="showPicker()">
       <label class="label" for="date">Дата</label>
-      <input #date class="date date-input" type="date" name="date" id="date" formControlName="date"
-        (change)="selectDate($event);">
+      <input #date class="date date-input" type="date" name="date" id="date" (change)="selectDate($event)">
+      <input type="hidden" name="dateVal" formControlName="date">
     </button>
   </div>
   <div class="searchForm__transports" (click)="selectTransportType($event)">
-    <input class="btn" type="button" value="Любой">
+    <input class="btn active" type="button" value="Любой">
     <button class="btn" type="button" value="plane">
       <img class="img" src="/assets/icon-plane.png" alt="plane">
     </button>

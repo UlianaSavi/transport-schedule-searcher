@@ -85,7 +85,7 @@
   left: -24px;
   width: 24px;
   height: 24px;
-  background: #e9ecef url(/assets/icon-calendar.png) 0 no-repeat;
+  background: url(/assets/icon-calendar.png) 0 no-repeat;
   background-size: contain;
 }
 
