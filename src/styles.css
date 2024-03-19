@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 13px / 18px YS Text, Helvetica Neue, Helvetica, Arial, Verdana, sans-serif;
+}
