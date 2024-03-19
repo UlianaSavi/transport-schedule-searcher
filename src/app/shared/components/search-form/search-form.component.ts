@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { CitiesResponse, Direction, TransportType } from 'src/app/types';
 
@@ -10,6 +10,7 @@ import { CitiesResponse, Direction, TransportType } from 'src/app/types';
 export class SearchFormComponent {
   @Input() cities: CitiesResponse | null = null;
   @Output() newGetCitiesEvent = new EventEmitter<{direction: Direction, matchStr: string}>();
+  @ViewChild('date') dateInput: ElementRef | null = null;
 
   public searchForm = new FormGroup({
     from: new FormControl(''),
@@ -24,6 +25,14 @@ export class SearchFormComponent {
     }
     if (this.searchForm.value.to) {
       this.newGetCitiesEvent.emit({direction: Direction.to, matchStr: this.searchForm.value.to});
+    }
+  }
+
+  public showPicker() {
+    try {
+      this.dateInput?.nativeElement.showPicker();
+    } catch (error) {
+      console.log(error);
     }
   }
 }

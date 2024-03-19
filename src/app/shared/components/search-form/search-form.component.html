@@ -1,4 +1,33 @@
 <form class="searchForm" action="">
-  <input class="searchForm__input" name="fromName" value="" placeholder="Откуда" autocomplete="off">
-  <input class="searchForm__input" name="toName" value="" placeholder="Куда" autocomplete="off">
+  <div class="searchForm__inputs">
+    <input class="searchForm__inputs__input input-from" name="fromName" value="" placeholder="Откуда" autocomplete="off">
+    <input class="searchForm__inputs__input input-to" name="toName" value="" placeholder="Куда" autocomplete="off">
+    <div class="searchForm__inputs__switch">
+      <img class="img" src="/assets/icon-switch.png" alt="Switch">
+    </div>
+  </div>
+  <div class="searchForm__date">
+    <button class="btn" type="button">Сегодня</button>
+    <button class="btn" type="button">Завтра</button>
+    <button class="btn searchForm__date__btn" type="button" (click)="showPicker()">
+      <label for="date">Дата</label>
+      <input #date class="date-input" type="date" name="date" id="date">
+    </button>
+  </div>
+  <div class="searchForm__transports">
+    <button class="btn" type="button">Любой</button>
+    <button class="btn" type="button">
+      <img class="img" src="/assets/icon-plane.png" alt="plane">
+    </button>
+    <button class="btn" type="button">
+      <img class="img" src="/assets/icon-train.png" alt="train">
+    </button>
+    <button class="btn" type="button">
+      <img class="img" src="/assets/icon-suburban.png" alt="suburban">
+    </button>
+    <button class="btn" type="button">
+      <img class="img" src="/assets/icon-bus.png" alt="bus">
+    </button>
+  </div>
+  <button class="btn btn-yellow" type="submit">Найти</button>
 </form>
