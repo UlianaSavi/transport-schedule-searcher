@@ -1,9 +1,9 @@
 <form class="searchForm" action="" [formGroup]="searchForm">
   <div class="searchForm__inputs">
     <input class="searchForm__inputs__input input-from" formControlName="from" name="fromName" value=""
-      placeholder="Откуда" autocomplete="off">
+      placeholder="Откуда" autocomplete="off" (focus)="getCities()" (change)="getCities()">
     <input class="searchForm__inputs__input input-to" formControlName="to" name="toName" value="" placeholder="Куда"
-      autocomplete="off">
+      autocomplete="off" (focus)="getCities()" (change)="getCities()">
     <div class="searchForm__inputs__switch">
       <img class="img" src="/assets/icon-switch.png" alt="Switch">
     </div>

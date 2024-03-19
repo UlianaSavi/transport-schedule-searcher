@@ -226,6 +226,7 @@ export type CitiesResponse = [
 ]
 
 export enum Direction {
-  "from", "to"
+  from = "from",
+  to = "to",
 }
 

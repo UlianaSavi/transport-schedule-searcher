@@ -27,16 +27,14 @@ export class SearchFormComponent implements OnInit {
   });
 
   ngOnInit() {
-    // this.searchForm.controls.date.valueChanges.subscribe((item) =>{
-    //   console.log(item);
-    // })
+    console.log(this.cities);
   }
 
   public getCities() {
-    if (this.searchForm.value.from) {
+    if (this.searchForm.value.from?.length) {
       this.getCitiesEvent.emit({direction: Direction.from, matchStr: this.searchForm.value.from});
     }
-    if (this.searchForm.value.to) {
+    if (this.searchForm.value.to?.length) {
       this.getCitiesEvent.emit({direction: Direction.to, matchStr: this.searchForm.value.to});
     }
   }

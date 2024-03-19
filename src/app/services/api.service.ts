@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { CitiesResponse, ISearchResponse } from '../types';
+import { CitiesResponse, Direction, ISearchResponse } from '../types';
 import { API_SEARCH_URL, API_CITIES_URL } from '../constants';
 
 @Injectable({
@@ -15,9 +15,9 @@ export class ApiService {
     return this.http.get<ISearchResponse>(`${API_SEARCH_URL}/${params}`);
   }
 
-  public getCities(matchStr?: string) {
-    if (matchStr) {
-      return this.http.get<CitiesResponse>(`${API_CITIES_URL}&part=${matchStr}`);
+  public getCities(props?: {direction: Direction, matchStr: string}) {
+    if (props) {
+      return this.http.get<CitiesResponse>(`${API_CITIES_URL}&part=${props.matchStr}&field=${props.direction}`);
     }
     return this.http.get<CitiesResponse>(API_CITIES_URL);
   }

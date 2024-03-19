@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-import { CitiesResponse, ISearchResponse } from 'src/app/types';
+import { CitiesResponse, Direction, ISearchResponse } from 'src/app/types';
 
 @Component({
   selector: 'app-main-page',
@@ -13,9 +13,8 @@ export class MainPageComponent {
   public searchRes: ISearchResponse | null = null;
   public cities: CitiesResponse | null = null;
 
-  public getCities() {
-    this.apiService.getCities().subscribe((cities) => {
-      console.log(cities);
+  getCities(props?: {direction: Direction, matchStr: string}) {
+    this.apiService.getCities(props).subscribe((cities) => {
       this.cities = cities;
     });
   }
