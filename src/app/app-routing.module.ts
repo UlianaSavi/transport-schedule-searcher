@@ -4,7 +4,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 
 enum Paths {
   emplty = '',
-  main = 'transport-schedule-searcher',
+  main = 'main',
 }
 
 const routes: Routes = [
