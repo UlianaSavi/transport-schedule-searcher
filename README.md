@@ -15,6 +15,8 @@
 
 **Инструкция по запуску и использованию:**
 
+*Перейдите на* `https://ulianasavi.github.io/transport-schedule-searcher/` или:
+
 *Локальный запуск:*
 1) Склонировать репозиторий - `git clone <repo name>`
 2) Выполнить команду в консоли от корня приложения - `npm i`
@@ -22,7 +24,6 @@
 4) Перейти в Chrome на `http://localhost:4200/`
 
 ### EN
-
 
 **Angular is an application for searching schedules using Yandex Api.**
 
@@ -33,7 +34,9 @@
   4. Calendar with date selection
 
 **Instructions for starting and using:**
+*Go to* `https://ulianasavi.github.io/transport-schedule-searcher/` or:
 
+*Local start:*
 1) Clone the repository - `git clone <repo name>`
 2) Run the command in the console from the root of the app - `npm i`
 3) Run the app start command - `npm run start`
