@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { API_KEY } from 'src/app/constants';
 import { ApiService } from 'src/app/services/api.service';
-import { CitiesResponse, Direction, ISearchResponse } from 'src/app/types';
+import { CitiesResponse, Direction, ISearchResponse, SearchFormProps } from 'src/app/types';
 
 @Component({
   selector: 'app-main-page',
@@ -19,9 +20,10 @@ export class MainPageComponent {
     });
   }
 
-  public search(props: unknown) {
+  public search(props: SearchFormProps) {
     console.log(props);
-    // this.apiService.search().subscribe((data) => {
+    const params = `?apikey=${API_KEY}&format=json&from=${props.from}&to=${props.to}&lang=ru_RU&date=${props.date}`
+    // this.apiService.search(params).subscribe((data) => {
     //   console.log(data);
     //   this.searchRes = data;
     // });

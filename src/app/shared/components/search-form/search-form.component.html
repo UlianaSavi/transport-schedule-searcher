@@ -1,16 +1,17 @@
 <form class="searchForm" action="" [formGroup]="searchForm">
   <div class="searchForm__inputs">
     <input class="searchForm__inputs__input input-from" formControlName="from" name="fromName" value=""
-      placeholder="Откуда" autocomplete="off" (input)="getCities()" (focusin)="setInputActive(directionTypes.from)">
+      placeholder="Откуда" autocomplete="off" (input)="getCities(directionTypes.from)"
+      (focusin)="getCities(directionTypes.from)">
     <ul *ngIf="cities && listFromActive" class="searchForm__cities-list">
       <li class="searchForm__cities-list__item" *ngFor="let city of cities?.[1]"
-        (click)="selectCity(directionTypes.from, city.at(1) || '')">{{ city.at(1) }}</li>
+        (click)="selectCity(directionTypes.from, city.at(0) || '', city.at(1) || '')">{{ city.at(1) }}</li>
     </ul>
     <input class="searchForm__inputs__input input-to" formControlName="to" name="toName" value="" placeholder="Куда"
-      autocomplete="off" (input)="getCities()" (focusin)="setInputActive(directionTypes.to)">
+      autocomplete="off" (input)="getCities(directionTypes.to)" (focusin)="getCities(directionTypes.to)">
     <ul *ngIf="cities && !listFromActive" class="searchForm__cities-list list-to">
       <li class="searchForm__cities-list__item" *ngFor="let city of cities?.[1]"
-        (click)="selectCity(directionTypes.to, city.at(1) || '')">{{ city.at(1) }}</li>
+        (click)="selectCity(directionTypes.to, city.at(0) || '', city.at(1) || '')">{{ city.at(1) }}</li>
     </ul>
     <div class="searchForm__inputs__switch">
       <img class="img" src="/assets/icon-switch.png" alt="Switch">

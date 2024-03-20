@@ -31,25 +31,21 @@ export class SearchFormComponent implements OnInit {
   });
 
   ngOnInit() {
-    // TODO: Добавить логику стрелочка switch у формы поиска from/to
     // TODO: Сформировать url для запроса search и отправить запрос по апи, результат вывести в консоль
     // TODO: Сверстать карточку для выдачи с ngFor и передать туда данные с searchRes (в list component)
     // TODO: Если успеешь - добавить лоадер (спизди с Яндекс расписаний)
   }
 
-  public setInputActive(type: Direction) {
-    if (type === Direction.from) {
+  public getCities(type: Direction) {
+    if (type === Direction.from
+        && this.searchForm.value.from?.length
+        && this.searchForm.value.from?.length >= MIN_SEARCH_LEN) {
       this.listFromActive = true;
-    } else {
-      this.listFromActive = false;
-    }
-  }
-
-  public getCities() {
-    if (this.searchForm.value.from?.length && this.searchForm.value.from?.length >= MIN_SEARCH_LEN) { // тут нужно другое условие - проверять в фокусе ли инпут
       this.getCitiesEvent.emit({direction: Direction.from, matchStr: this.searchForm.value.from});
-    }
-    if (this.searchForm.value.to?.length && this.searchForm.value.to?.length >= MIN_SEARCH_LEN) {
+    } else if (type === Direction.to
+        && this.searchForm.value.to?.length
+        && this.searchForm.value.to?.length >= MIN_SEARCH_LEN){
+      this.listFromActive = false;
       this.getCitiesEvent.emit({direction: Direction.to, matchStr: this.searchForm.value.to});
     }
   }
@@ -115,9 +111,9 @@ export class SearchFormComponent implements OnInit {
     this.searchForm.controls.transportType.setValue(target?.value as TransportType);
   }
 
-  public selectCity(type: Direction, cityData: string) {
-    if(cityData.length) {
-      this.searchForm.controls[type].setValue(cityData);
+  public selectCity(type: Direction, cityCode: string, cityName: string) {
+    if(cityName.length) {
+      this.searchForm.controls[type].setValue(cityName);
       this.cities = null;
     }
   }
