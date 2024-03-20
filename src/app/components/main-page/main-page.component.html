@@ -2,5 +2,8 @@
   <h1 class="header">Расписание пригородного и междугородного транспорта</h1>
   <app-search-form [cities]="cities" (searchEvent)="search($event);" (getCitiesEvent)="getCities($event);">
   </app-search-form>
-  <app-list *ngIf="searchRes.length" [searchRes]="searchRes"></app-list>
+  <div *ngIf="isLoading" class="loader">
+    <img src="https://yastatic.net/s3/rasp/s/morda-front/_/images/loader.gif" alt="Loading...">
+  </div>
+  <app-list *ngIf="searchRes.length && !isLoading" [searchRes]="searchRes"></app-list>
 </div>

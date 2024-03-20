@@ -13,6 +13,7 @@ export class MainPageComponent {
 
   public searchRes: ISearchData[] = [];
   public cities: CitiesResponse | null = null;
+  public isLoading = false;
 
   getCities(props?: {direction: Direction, matchStr: string}) {
     this.apiService.getCities(props).subscribe((cities) => {
@@ -21,6 +22,8 @@ export class MainPageComponent {
   }
 
   public search(props: SearchFormProps) {
+    this.isLoading = true;
+    console.log(this.isLoading);
     let params = '';
     if (props.transportType !== TransportType.noneVal) {
       params = `?apikey=${API_KEY}&from=${props.from}&to=${props.to}&transport_types=${props.transportType}&lang=ru_RU&date=${props.date}`
@@ -29,6 +32,7 @@ export class MainPageComponent {
     }
     this.apiService.search(params).subscribe((data: ISearchResponse) => {
       this.searchRes = data.segments;
+      this.isLoading = false;
     });
   }
 }
