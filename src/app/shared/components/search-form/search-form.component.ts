@@ -118,7 +118,11 @@ export class SearchFormComponent {
   public switchFromToValues() {
     const to = this.searchForm.value.to;
     const from = this.searchForm.value.from;
+    const fromCode = this.searchForm.value.fromCode;
+    const toCode = this.searchForm.value.toCode;
     this.searchForm.controls.from.setValue(to || '');
     this.searchForm.controls.to.setValue(from || '');
+    this.searchForm.controls.fromCode.setValue(toCode || '');
+    this.searchForm.controls.toCode.setValue(fromCode || '');
   }
 }
