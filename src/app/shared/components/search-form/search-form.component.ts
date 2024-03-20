@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MIN_SEARCH_LEN } from 'src/app/constants';
 import { CitiesResponse, Direction, SearchFormProps, TransportType } from 'src/app/types';
@@ -9,7 +9,7 @@ import { getTomorrow } from 'src/app/utils';
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.css']
 })
-export class SearchFormComponent implements OnInit {
+export class SearchFormComponent {
   @Input() cities: CitiesResponse | null = null;
   @Output() getCitiesEvent = new EventEmitter<{direction: Direction, matchStr: string}>();
   @Output() searchEvent = new EventEmitter<SearchFormProps>();
@@ -25,16 +25,12 @@ export class SearchFormComponent implements OnInit {
 
   public searchForm = new FormGroup({
     from: new FormControl('', Validators.required),
+    fromCode: new FormControl('', Validators.required),
     to: new FormControl('', Validators.required),
+    toCode: new FormControl('', Validators.required),
     transportType: new FormControl(TransportType.noneVal, Validators.required),
     date: new FormControl(String(this.today), Validators.required),
   });
-
-  ngOnInit() {
-    // TODO: Сформировать url для запроса search и отправить запрос по апи, результат вывести в консоль
-    // TODO: Сверстать карточку для выдачи с ngFor и передать туда данные с searchRes (в list component)
-    // TODO: Если успеешь - добавить лоадер (спизди с Яндекс расписаний)
-  }
 
   public getCities(type: Direction) {
     if (type === Direction.from
@@ -52,9 +48,9 @@ export class SearchFormComponent implements OnInit {
 
   public search() {
     const props: SearchFormProps = {
-      from: this.searchForm.value.from || '',
-      to: this.searchForm.value.to  || '',
-      transportType: this.searchForm.value.transportType  || TransportType.bus,
+      from: this.searchForm.value.fromCode || '',
+      to: this.searchForm.value.toCode  || '',
+      transportType: this.searchForm.value.transportType  || TransportType.noneVal,
       date: this.searchForm.value.date  || String(this.today),
     }
     this.searchEvent.emit(props);
@@ -114,6 +110,7 @@ export class SearchFormComponent implements OnInit {
   public selectCity(type: Direction, cityCode: string, cityName: string) {
     if(cityName.length) {
       this.searchForm.controls[type].setValue(cityName);
+      this.searchForm.controls[`${type}Code`].setValue(cityCode);
       this.cities = null;
     }
   }
