@@ -1,0 +1,68 @@
+:root {
+  --white: white;
+  --yellow: #ffe356;
+  --transparent: transparent;
+  --opacity-grey: #8080803b;
+  --grey: #e9ecef;
+  --grey-dark: #333;
+  --grey-lite: #a8a8a8;
+  --box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font: 13px / 18px YS Text, Helvetica Neue, Helvetica, Arial, Verdana, sans-serif;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  max-height: 24px;
+  max-width: 24px;
+  object-fit: contain;
+}
+
+.btn {
+  width: 100%;
+  max-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11.5px 16px;
+  background: var(--white);
+  border: none;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.btn:disabled {
+  cursor: auto;
+}
+
+.btn.active {
+  color: var(--white) !important;
+  background-color: var(--grey-dark) !important;
+}
+.btn.active .img {
+  filter: brightness(7.5);
+}
+
+.btn-yellow {
+  background-color: var(--yellow);
+}
+
+.date-input {
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+}
