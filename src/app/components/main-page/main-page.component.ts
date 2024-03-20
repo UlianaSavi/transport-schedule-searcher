@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { API_KEY } from 'src/app/constants';
 import { ApiService } from 'src/app/services/api.service';
-import { CitiesResponse, Direction, ISearchData, ISearchResponse, SearchFormProps, TransportType } from 'src/app/types';
+import { CitiesResponse,
+  Direction,
+  ISearchData,
+  ISearchResponse,
+  SearchFormProps,
+  TransportType } from 'src/app/types';
 
 @Component({
   selector: 'app-main-page',
@@ -23,7 +28,6 @@ export class MainPageComponent {
 
   public search(props: SearchFormProps) {
     this.isLoading = true;
-    console.log(this.isLoading);
     let params = '';
     if (props.transportType !== TransportType.noneVal) {
       params = `?apikey=${API_KEY}&from=${props.from}&to=${props.to}&transport_types=${props.transportType}&lang=ru_RU&date=${props.date}`

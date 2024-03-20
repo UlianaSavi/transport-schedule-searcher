@@ -13,7 +13,7 @@
       <li class="searchForm__cities-list__item" *ngFor="let city of cities?.[1]"
         (click)="selectCity(directionTypes.to, city.at(0) || '', city.at(1) || '')">{{ city.at(1) }}</li>
     </ul>
-    <div class="searchForm__inputs__switch">
+    <div class="searchForm__inputs__switch" (click)="switchFromToValues()">
       <img class="img" src="/assets/icon-switch.png" alt="Switch">
     </div>
   </div>

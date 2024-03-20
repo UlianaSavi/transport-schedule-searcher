@@ -114,4 +114,11 @@ export class SearchFormComponent {
       this.cities = null;
     }
   }
+
+  public switchFromToValues() {
+    const to = this.searchForm.value.to;
+    const from = this.searchForm.value.from;
+    this.searchForm.controls.from.setValue(to || '');
+    this.searchForm.controls.to.setValue(from || '');
+  }
 }
