@@ -25,6 +25,7 @@
   right: 2px;
   top: 20px;
   border: 10px solid var(--white);
+  cursor: pointer;
 }
 
 .searchForm__inputs__input.input-from {
