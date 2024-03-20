@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MIN_SEARCH_LEN } from 'src/app/constants';
 import { CitiesResponse, Direction, SearchFormProps, TransportType } from 'src/app/types';
 import { getTomorrow } from 'src/app/utils';
 
@@ -19,22 +20,26 @@ export class SearchFormComponent implements OnInit {
   private today = new Date().toISOString().slice(0, 10);
   private tomorrow = getTomorrow();
 
+  public directionTypes = Direction;
+
   public searchForm = new FormGroup({
     from: new FormControl('', Validators.required),
     to: new FormControl('', Validators.required),
-    transportType: new FormControl(TransportType.none, Validators.required),
+    transportType: new FormControl(TransportType.noneVal, Validators.required),
     date: new FormControl(String(this.today), Validators.required),
   });
 
   ngOnInit() {
-    console.log(this.cities);
+    // TODO: Сформировать url для запроса search и отправить запрос по апи, результат вывести в консоль
+    // TODO: Сверстать карточку для выдачи с ngFor и передать туда данные с searchRes (в list component)
+    // TODO: Если успеешь - добавить лоадер (спизди с Яндекс расписаний)
   }
 
   public getCities() {
-    if (this.searchForm.value.from?.length) {
+    if (this.searchForm.value.from?.length && this.searchForm.value.from?.length > MIN_SEARCH_LEN) {
       this.getCitiesEvent.emit({direction: Direction.from, matchStr: this.searchForm.value.from});
     }
-    if (this.searchForm.value.to?.length) {
+    if (this.searchForm.value.to?.length && this.searchForm.value.to?.length > MIN_SEARCH_LEN) {
       this.getCitiesEvent.emit({direction: Direction.to, matchStr: this.searchForm.value.to});
     }
   }
@@ -83,7 +88,6 @@ export class SearchFormComponent implements OnInit {
       default:
       this.searchForm.controls.date.setValue(target.value);
     }
-    console.log(this.searchForm.controls.date.value);
   }
 
   public selectTransportType(e: Event) {
@@ -95,8 +99,16 @@ export class SearchFormComponent implements OnInit {
     });
     this.renderer.addClass(target, 'active');
     if (target?.value === TransportType.none) {
+      this.searchForm.controls.transportType.setValue(TransportType.noneVal);
       return;
     }
     this.searchForm.controls.transportType.setValue(target?.value as TransportType);
+  }
+
+  public selectCity(type: Direction, cityData: string) {
+    if(cityData.length) {
+      this.searchForm.controls[type].setValue(cityData);
+      this.cities = null;
+    }
   }
 }

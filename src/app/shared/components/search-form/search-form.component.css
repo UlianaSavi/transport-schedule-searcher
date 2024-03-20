@@ -104,3 +104,20 @@
   border-radius: 4px;
   font-size: 15px;
 }
+
+.searchForm__cities-list {
+  width: 100%;
+  position: absolute;
+  top: 30px;
+  list-style: none;
+  padding-left: 0;
+  border-top: 2px solid;
+  z-index: 1;
+  background: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+.searchForm__cities-list__item {
+  border-bottom: 1px solid var(--opacity-grey);
+  padding: 10px;
+}

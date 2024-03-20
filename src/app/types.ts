@@ -212,6 +212,7 @@ export type SearchFormProps = {
 
 export enum TransportType {
   none = "Любой",
+  noneVal = "/",
   plane = "plane",
   train = "train",
   suburban = "suburban",
