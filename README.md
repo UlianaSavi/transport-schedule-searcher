@@ -1,27 +1,40 @@
-# TransportScheduleSearcher
+# Transport Schedule Searcher
+![изображение](https://github.com/UlianaSavi/transport-schedule-searcher/assets/105851981/65927158-590f-4347-a51a-3cb77b379db8)
+![изображение](https://github.com/UlianaSavi/transport-schedule-searcher/assets/105851981/52d1fba4-da13-46af-93c1-241e594f933c)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+### RU
 
-## Development server
+**Ангуляр приложение для поиска расписаний, использующее Яндекс Апи.**
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+*Критерии поиска:*
+  1. Типа транспорта
+  2. Откуда
+  3. Куда
+  4. Календарь с выбором даты
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Инструкция по запуску и использованию:**
 
-## Build
+*Локальный запуск:*
+1) Склонировать репозиторий - `git clone <repo name>`
+2) Выполнить команду в консоли от корня приложения - `npm i`
+3) Выполнить команду запуска приложения - `npm run start`
+4) Перейти в Chrome на `http://localhost:4200/`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### EN
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Angular is an application for searching schedules using Yandex Api.**
 
-## Running end-to-end tests
+*Search criteria:*
+  1. Type of transport
+  2. From where
+  3. Where to
+  4. Calendar with date selection
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**Instructions for starting and using:**
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1) Clone the repository - `git clone <repo name>`
+2) Run the command in the console from the root of the app - `npm i`
+3) Run the app start command - `npm run start`
+4) Go to Chrome to `http://localhost:4200/`
