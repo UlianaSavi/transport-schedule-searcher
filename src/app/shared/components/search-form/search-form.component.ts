@@ -21,6 +21,7 @@ export class SearchFormComponent implements OnInit {
   private tomorrow = getTomorrow();
 
   public directionTypes = Direction;
+  public listFromActive = false;
 
   public searchForm = new FormGroup({
     from: new FormControl('', Validators.required),
@@ -30,16 +31,25 @@ export class SearchFormComponent implements OnInit {
   });
 
   ngOnInit() {
+    // TODO: Добавить логику стрелочка switch у формы поиска from/to
     // TODO: Сформировать url для запроса search и отправить запрос по апи, результат вывести в консоль
     // TODO: Сверстать карточку для выдачи с ngFor и передать туда данные с searchRes (в list component)
     // TODO: Если успеешь - добавить лоадер (спизди с Яндекс расписаний)
   }
 
+  public setInputActive(type: Direction) {
+    if (type === Direction.from) {
+      this.listFromActive = true;
+    } else {
+      this.listFromActive = false;
+    }
+  }
+
   public getCities() {
-    if (this.searchForm.value.from?.length && this.searchForm.value.from?.length > MIN_SEARCH_LEN) {
+    if (this.searchForm.value.from?.length && this.searchForm.value.from?.length >= MIN_SEARCH_LEN) { // тут нужно другое условие - проверять в фокусе ли инпут
       this.getCitiesEvent.emit({direction: Direction.from, matchStr: this.searchForm.value.from});
     }
-    if (this.searchForm.value.to?.length && this.searchForm.value.to?.length > MIN_SEARCH_LEN) {
+    if (this.searchForm.value.to?.length && this.searchForm.value.to?.length >= MIN_SEARCH_LEN) {
       this.getCitiesEvent.emit({direction: Direction.to, matchStr: this.searchForm.value.to});
     }
   }

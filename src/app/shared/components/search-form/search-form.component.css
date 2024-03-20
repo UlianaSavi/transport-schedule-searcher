@@ -116,8 +116,12 @@
   background: var(--white);
   box-shadow: var(--box-shadow);
 }
+.searchForm__cities-list.list-to {
+  top: 75px;
+}
 
 .searchForm__cities-list__item {
   border-bottom: 1px solid var(--opacity-grey);
   padding: 10px;
+  cursor: pointer;
 }
