@@ -122,6 +122,7 @@ export interface ISearchData {
     title: string;
     number: string;
     short_title: string;
+    transport_type: string;
     thread_method_link: string;
     carrier: {
       code: number;
@@ -139,7 +140,6 @@ export interface ISearchData {
       logo: string;
       email: string;
     };
-    transport_type: string;
     vehicle: string;
     transport_subtype: {
       color: string;

@@ -50,7 +50,7 @@
 }
 
 .searchForm__date .btn {
-  border-right: 1px solid var(--grey-lite);
+  border-right: 1px solid var(--opacity-grey);
   border-radius: 0;
 }
 
@@ -124,4 +124,12 @@
   border-bottom: 1px solid var(--opacity-grey);
   padding: 10px;
   cursor: pointer;
+}
+
+@media (max-width: 375px) {
+  .searchForm__date .btn,
+  .searchForm__transports .btn {
+    width: 100%;
+    padding: 12px 10px;
+  }
 }

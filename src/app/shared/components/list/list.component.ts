@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ISearchData } from 'src/app/types';
+import { changeDate } from 'src/app/utils';
 
 @Component({
   selector: 'app-list',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  @Input() searchRes: ISearchData[] = [];
 
+  public Math = Math;
+  public changeDate = changeDate;
 }
