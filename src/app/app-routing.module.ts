@@ -4,12 +4,12 @@ import { MainPageComponent } from './components/main-page/main-page.component';
 
 enum Paths {
   emplty = '',
-  main = 'main',
+  main = 'transport-schedule-searcher',
 }
 
 const routes: Routes = [
   { path: Paths.emplty, redirectTo: Paths.main, pathMatch: 'full' },
-  { path: 'main', component: MainPageComponent },
+  { path: Paths.main, component: MainPageComponent },
 ];
 
 @NgModule({
